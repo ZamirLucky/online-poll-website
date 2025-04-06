@@ -1,3 +1,6 @@
+using DataAccess.DataContext;
+using Microsoft.EntityFrameworkCore;
+
 namespace Presentation
 {
     public class Program
@@ -8,6 +11,9 @@ namespace Presentation
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<PollDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
