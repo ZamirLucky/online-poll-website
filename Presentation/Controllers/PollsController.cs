@@ -45,5 +45,15 @@ namespace Presentation.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            // Get all polls from the repository
+            var polls = _pollRepository.GetPolls()
+                .OrderByDescending(p => p.DateCreated);
+            // Return the view with the list of polls
+            return View(polls);
+        }
+
     }
 }
