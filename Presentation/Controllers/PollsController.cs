@@ -55,5 +55,18 @@ namespace Presentation.Controllers
             return View(polls);
         }
 
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            // Get the poll by ID from the repository
+            var poll = _pollRepository.GetPollById(id);
+            if (poll == null)
+            {
+                return RedirectToAction("Index");
+            }
+            // Return the view with the poll details
+            return View(poll);
+        }
+
     }
 }

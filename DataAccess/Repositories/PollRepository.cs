@@ -32,7 +32,10 @@ namespace DataAccess.Repositories
             return _pollDbContext.Polls;
         }
 
-
+        public Poll GetPollById(int pollId)
+        {
+            return _pollDbContext.Polls.SingleOrDefault(p => p.PollID == pollId);
+        }
 
     }
 }
