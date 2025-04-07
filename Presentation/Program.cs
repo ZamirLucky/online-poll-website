@@ -1,4 +1,5 @@
 using DataAccess.DataContext;
+using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Presentation
@@ -14,6 +15,7 @@ namespace Presentation
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<PollDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            builder.Services.AddScoped<PollRepository>();
 
             var app = builder.Build();
 
